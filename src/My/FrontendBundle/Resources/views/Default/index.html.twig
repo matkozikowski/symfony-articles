@@ -1,0 +1,69 @@
+{# app/Resources/views/My/Frontend/index.html.twig #}
+
+{% extends '::base.html.twig' %}
+
+{% block title %}Frontend{% endblock %}
+
+{% block stylesheets %}
+
+{% endblock %}
+
+{% block body -%}
+
+<ul class="nav nav-tabs" role="tablist" id="myTab">
+
+  <li role="presentation"><a href="#news" aria-controls="news" role="tab" data-toggle="tab">News</a></li>
+  <li role="presentation"><a href="#important-news" aria-controls="important-news" role="tab" data-toggle="tab">Important News</a></li>
+
+</ul>
+
+<div class="tab-content">
+
+  <section role="tabpanel" class="tab-pane active" id="news">
+
+  	{% for entity_news in entities_news %}
+
+  		<article class="col-xs-12 col-sm-12 article">
+  			<div class="date">
+  				<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+  				{{ entity_news.createAt|date('Y-m-d H:i:s') }}
+  			</div>
+  			<h1 class="title"><a href="{{ path('more_show', { 'id': entity_news.id }) }}">{{ entity_news.title }}</a></h1>
+  		</article>
+
+    {% endfor %}
+
+  </section>
+  
+  <section role="tabpanel" class="tab-pane" id="important-news">
+
+  	{% for entity_important in entities_important %}
+
+  		<article class="col-xs-12 col-sm-12 article">
+  			<div class="date">
+  				<span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+  				{{ entity_important.createAt|date('Y-m-d H:i:s') }}
+  			</div>
+  			<h1 class="title"><a href="{{ path('more_show', { 'id': entity_important.id }) }}">{{ entity_important.title }}</a></h1>
+  		</article>
+
+    {% endfor %}
+
+  </section>
+
+</div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+<script>
+
+  $(function () {
+    $('#myTab a:last').tab('show')
+  })
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Admin Panel - Articles list{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+<style>
+    #sortable1, #sortable2 {
+        border: 1px solid #eee;
+        width: 142px;
+        min-height: 20px;
+        list-style-type: none;
+        margin: 0;
+        padding: 5px 0 0 0;
+        float: left;
+        margin-right: 10px;
+    }
+    #sortable1 li, #sortable2 li {
+        margin: 0 5px 5px 5px;
+        padding: 5px;
+        font-size: 1.2em;
+        width: 120px;
+    }
+</style>
+{% endblock %}
+
+{% block body -%}
+
+    
+
+    
+<div class="col-xs-12 col-md-12">
+    <blockquote>
+        <p>Sort Articles</p>
+        <footer>Please drag and drop the single article into category</footer>
+    </blockquote>
+    <div class="articles-content">
+
+        {{ render(controller('MyBackendBundle:Articles:ajaxView', { 'max': 3 })) }}
+
+    </div>
+    <a id="save-change" class="btn btn-success" href="#sort">Save Changes</a>
+</div>
+
+<div class="col-xs-12 col-md-12">
+    <a class="btn btn-default" href="{{ path('articles_new') }}">
+        Create a new article
+    </a>
+</div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+
+<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+<script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+<script>
+    $(function() {
+
+        $('#save-change').on('click', function(){
+            var articlesNews = [];
+            var articlesImportant = [];
+
+            $('#sortable1 li').each(function( index ) {
+                articlesNews.push({
+                                    "id" : $(this).data('id'),
+                                    "sort" : index
+                                });
+            });
+
+            $('#sortable2 li').each(function( index ) {
+                articlesImportant.push({
+                                    "id" : $(this).data('id'),
+                                    "sort" : index
+                                });
+            });
+
+            var data = {
+                1 : JSON.stringify(articlesNews),
+                2 : JSON.stringify(articlesImportant)
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '{{path('ajax_articles')}}',
+                contentType: 'application/json; charset=UTF-8',
+                data: JSON.stringify(data),
+                 success: function(data) {
+                    var data = JSON.parse(data);
+                    if( data.status ){
+                        $('.articles-content').html(data.html);
+                    }
+                    
+                }    
+            });
+
+            return false;
+          
+       })
+    });
+
+</script>
+
+{% endblock %}

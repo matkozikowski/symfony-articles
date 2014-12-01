@@ -1,0 +1,26 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+<div class="col-xs-12 col-md-12">
+    <blockquote>
+        <p><strong>Title:</strong> {{ entity.title }}</p>
+        <footer>ID: {{ entity.id }}</footer>
+    </blockquote>
+    <div class="articles-content">
+        <p><strong>Created at</strong> {{ entity.createAt|date('Y-m-d H:i:s') }}</p>
+        <p><strong>Content:</strong></p>
+        <p>{{ entity.content }}</p>
+        <p>
+            <a class="btn btn-default" href="{{ path('articles') }}">
+                Back to the list
+            </a>
+            <a class="btn btn-default" href="{{ path('articles_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </p>
+
+    </div>
+    <hr />
+    {{ form(delete_form) }}
+</div>
+{% endblock %}

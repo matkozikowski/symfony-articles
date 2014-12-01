@@ -1,0 +1,47 @@
+    <div class="col-xs-6 sort-row">
+    <p><strong>Category:</strong> News</p>
+    <ul data-category="1" id="sortable1" class="connectedSortable">
+        
+        {% for entity_news in entities_news %}
+
+        <li data-id="{{ entity_news.id }}" class="ui-state-default">
+            <p>{{ entity_news.createAt|date('Y-m-d H:i:s') }}</p>
+            <p>{{ entity_news.title }}</p>
+            <p>
+                <a href="{{ path('articles_show', { 'id': entity_news.id }) }}">show</a>
+                <a href="{{ path('articles_edit', { 'id': entity_news.id }) }}">edit</a>
+            </p>
+        </li>
+
+        {% endfor %}
+
+    </ul>
+    </div>
+    <div class="col-xs-6 sort-row">
+    <p><strong>Category:</strong> Important News</p>
+    <ul data-category="2" id="sortable2" class="connectedSortable">
+
+        {% for entity_important in entities_important %}
+
+        <li data-id="{{ entity_important.id }}" class="ui-state-highlight">
+            <p>{{ entity_important.createAt|date('Y-m-d H:i:s') }}</p>
+            <p>{{ entity_important.title }}</p>
+            <p>
+                <a href="{{ path('articles_show', { 'id': entity_important.id }) }}">show</a>
+                <a href="{{ path('articles_edit', { 'id': entity_important.id }) }}">edit</a>
+            </p>
+        </li>
+
+        {% endfor %}
+
+    </ul>
+    </div>
+{% block javascripts %}
+<script>
+    $(function() {
+    	$( "#sortable1, #sortable2" ).sortable({
+            connectWith: ".connectedSortable"
+        }).disableSelection();
+    });
+</script>
+{% endblock %}

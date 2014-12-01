@@ -1,0 +1,72 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Admin Panel - Articles edit{% endblock %}
+
+{% block body -%}
+
+	<div class="col-xs-12 col-md-12">
+	    <blockquote>
+	        <p>Articles creation</p>
+	    </blockquote>
+	    <div class="articles-content">
+	    
+	    {{ form_start(edit_form, {'action': path('articles_create'), 'method': 'post'}) }}
+        	{{ form_errors(edit_form) }}
+            <div class="form-group">
+                {{ form_label(edit_form.title) }}
+                {{ form_errors(edit_form.title) }}
+                {{ form_widget(edit_form.title, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(edit_form.createAt) }}
+                {{ form_errors(edit_form.createAt) }}
+		        <div class="form-group">
+		            <div class='input-group date' id='datetimepicker1'>
+		                {{ form_widget(edit_form.createAt, { 'attr': {'class': 'form-control', 'data-date-format':'YYYY-MM-DD hh:mm:ss'} }) }}
+		                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		            </div>
+		        </div>
+            </div>
+            
+            <div class="form-group">
+                {{ form_label(edit_form.categories) }}
+                {{ form_errors(edit_form.categories) }}
+                {{ form_widget(edit_form.categories, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(edit_form.content) }}
+                {{ form_errors(edit_form.content) }}
+                {{ form_widget(edit_form.content, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+
+        {{ form_end(edit_form) }}
+
+	    <a class="btn btn-default" href="{{ path('articles') }}">
+	        Back to the list
+	    </a>
+	    </div>
+
+    	<hr />
+   		
+   		{{ form(delete_form) }}
+	</div>
+
+{% endblock %}
+
+{% block javascripts %}
+	
+	<script src="{{ asset('dist/js/moment-with-locales.js') }}"></script>
+    <script src="{{ asset('dist/js/bootstrap-datetimepicker.js') }}"></script>
+	
+	<script type="text/javascript">
+	
+
+     $(document).ready(function(){
+        $("#datetimepicker1").datetimepicker({pickTime: false});
+    });
+	</script>
+
+{% endblock %}

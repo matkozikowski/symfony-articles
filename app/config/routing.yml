@@ -1,0 +1,14 @@
+my_frontend:
+    resource: "@MyFrontendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+my_backend:
+    resource: "@MyBackendBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+    
+
+
+fos_user_security:  
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"  

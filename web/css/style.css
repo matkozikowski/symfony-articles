@@ -1,0 +1,65 @@
+/** BackendBundle **/
+.articles-content{
+	width: 100%;
+	display: inline-block;
+}
+	.articles-content .sort-row{
+		display: inline-block;
+		width: 40%;
+	}
+
+.col-xs-6.sort-row ul#sortable1,
+.col-xs-6.sort-row ul#sortable2{
+	width: 100%;
+}
+	.col-xs-6.sort-row ul#sortable1 li,
+	.col-xs-6.sort-row ul#sortable2 li{
+		width: 97.5%;
+	}
+.col-xs-6.sort-row ul.connectedSortable.ui-sortable li p{
+	font-size: 13px;
+	margin: 0;
+}
+
+.col-xs-6.sort-row ul.connectedSortable.ui-sortable li p a{
+	display: inline-block;
+	color: #337ab7;
+	padding: 0 5px 0 0;
+}
+	.col-xs-6.sort-row ul.connectedSortable.ui-sortable li p a:hover{
+		text-decoration: underline;
+	}
+
+#save-change{
+	display: inline-block;
+	margin: 20px 0;
+}
+	/** create form **/
+	form div#my_backendbundle_articles div label{
+		width: 150px;
+		display: inline-block;
+		margin: 5px 0;
+	}
+	form div#my_backendbundle_articles div input,
+	form div#my_backendbundle_articles div textarea{
+		width: 350px;
+		display: inline-block;
+		margin: 5px 0;
+	}
+
+	html body div.container section.row div.col-xs-12.col-md-12 form div#my_backendbundle_articles div button#my_backendbundle_articles_submit{
+		margin: 10px 0;
+	}
+/** FrontendBundle **/
+
+/** Article List **/
+.article{
+	padding: 5px 0 10px 0;
+	margin: 10px 0 10px 0;
+	display: inline-block;
+	border-bottom: 1px dashed #ddd;
+}
+
+.article .title{
+	font-size: 1.5em;
+}
